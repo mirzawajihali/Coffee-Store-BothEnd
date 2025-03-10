@@ -54,7 +54,7 @@ const AddCoffee = () => {
     return (
        <div>
         <Navbar ></Navbar>
-         <div className="bg-[#F4F3F0] border border-4 rounded-lg shadow relative m-10">
+         <div className="bg-[#dfd9c5] border border-4 rounded-lg shadow relative m-10">
         <div className="flex items-start justify-between p-5 border-b rounded-t">
             <h3 className="text-xl font-semibold">
                 Add Coffee
