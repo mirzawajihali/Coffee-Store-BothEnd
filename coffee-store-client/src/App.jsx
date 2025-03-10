@@ -3,6 +3,8 @@ import { useLoaderData } from 'react-router-dom';
 import './App.css'
 import Navbar from './components/Navbar'
 import DisplayCoffee from './components/displayCoffee';
+import ExtraSection from './components/ExtraSection';
+import Header from './components/Header';
 
 
 function App() {
@@ -11,9 +13,12 @@ function App() {
   return (
     <>
     <Navbar></Navbar>
+    <Header></Header>
     
-     <h1>Hello</h1>
+     
       <DisplayCoffee coffee={coffee}></DisplayCoffee>
+
+      <ExtraSection></ExtraSection>
     </>
   )
 }

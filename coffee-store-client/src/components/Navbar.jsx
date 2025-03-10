@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div className="px-4 bg-[#dfd9c5]  max-w-screen sm:px-6">
+        <div className="px-4 bg-gradient-to-r from-[#1A120B] to-[#3C2A21] text-white text-bold  max-w-screen sm:px-6">
     <div className="relative p-3 sm:mb-24">
         <nav className="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
             <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">

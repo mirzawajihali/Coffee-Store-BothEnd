@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Coffee = ({coffee}) => {
+const Coffee = ({coffee, coffees, setCoffees}) => {
 
 
     const handleDelete = _id => { 
@@ -31,17 +31,22 @@ const Coffee = ({coffee}) => {
                         'Your coffee has been deleted.',
                         'success'
                       )
+
+                      const remaining = coffees.filter(cof => cof._id !== _id);
+                      setCoffees(remaining);
                 }
             })
             }
           });
 
        }
+    //    bg-[#dfd9c5] 
+    // 
 
 const {name, price, taste, photo} = coffee;
     return (
         <div>
-            <div className="flex-shrink-0 m-6 relative overflow-hidden bg-[#dfd9c5]  rounded-lg max-w-xs shadow-lg">
+            <div className="flex-shrink-0 m-6 relative overflow-hidden bg-gradient-to-r from-[#D7CCC8] to-[#BCAAA4]  rounded-lg max-w-xs shadow-lg">
     <svg
         className="absolute bottom-0 left-0 mb-8"
         viewBox="0 0 375 283"
@@ -78,7 +83,7 @@ const {name, price, taste, photo} = coffee;
     <div className="relative text-white px-2 pb-4 mt-2">
     <div className="flex justify-center items-center gap-2 ">
   <button className="btn rounded-xl shadow-2xl "><FaEye /></button>
-  <button className="btn rounded-xl shadow-2xl "><Link to={`updateCoffee/${coffee._id}`}><FaEdit /></Link></button>
+  <button className="btn rounded-xl shadow-2xl "><Link to={`updateCoffee/${coffees._id}`}><FaEdit /></Link></button>
   <button onClick={() => handleDelete(coffee._id) } className="btn rounded-xl shadow-2xl "><MdDelete /></button>
 </div>
     </div>

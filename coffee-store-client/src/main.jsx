@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import AddCoffee from './components/AddCoffee.jsx';
 import UpdateCoffee from './components/UpdateCoffee.jsx';
+import Error404 from './components/Error404.jsx';
 
 
 const router = createBrowserRouter([
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
     path: "updateCoffee/:id",
     element: <UpdateCoffee></UpdateCoffee>,
     loader : ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`),
-  }
+  },
+  {
+    path: "*",
+    element: <Error404></Error404>
+    
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
