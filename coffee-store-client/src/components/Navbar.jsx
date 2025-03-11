@@ -45,19 +45,24 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className="hidden md:flex md:space-x-10 list-none">
+            <div className="hidden md:flex font-bold md:space-x-10 list-none">
                <Link to='/'>Home</Link>
                <Link to='/addCoffee'>Add Coffee</Link>
-               <Link to='/updateCoffee'>Update Coffee</Link>
+               <Link to='/contact'>Contact Us</Link>
             </div>
             <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-                <div className="inline-flex rounded-full shadow">
-                    <div
-                        href="#"
-                        className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"
-                    >
-                        Sign in
-                    </div>
+                <div className="inline-flex rounded-full  shadow">
+                  
+                   
+                   
+                   <button className='  className="inline-flex items-center mx-2 px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
+                   <Link to="login">Login</Link>
+                   </button>
+                   <button className='  className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
+                   <Link to="login">SignUp</Link>
+                   </button>
+                       
+                   
                 </div>
             </div>
         </nav>
