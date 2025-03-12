@@ -49,6 +49,7 @@ const Navbar = () => {
                <Link to='/'>Home</Link>
                <Link to='/addCoffee'>Add Coffee</Link>
                <Link to='/contact'>Contact Us</Link>
+               <Link to='/users'>Users</Link>
             </div>
             <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                 <div className="inline-flex rounded-full  shadow">
@@ -59,7 +60,7 @@ const Navbar = () => {
                    <Link to="login">Login</Link>
                    </button>
                    <button className='  className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
-                   <Link to="login">SignUp</Link>
+                   <Link to="signup">SignUp</Link>
                    </button>
                        
                    

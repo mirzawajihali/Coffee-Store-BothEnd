@@ -1,6 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
+
 
 const Login = () => {
+    const {loginUser} = useContext(AuthContext);
+    const handleLogin= (e) =>
+    {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.email.value
+            const password = form.password.value
+
+            loginUser(email, password)
+            .then(result =>{
+                    console.log(result.user)
+                    const lastSignInTime = result.user?.metadata?.lastSignInTime
+                    const loginInfo ={email, lastSignInTime}
+
+                    fetch(`https://coffee-store-server-one-rho.vercel.app/users`, {
+                        method : 'PATCH'  ,
+                        headers :{
+                            'content-type' : 'application/json'
+                        },
+                        body : JSON.stringify(loginInfo)
+                                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        form.reset();
+                    })
+                    
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+    }
     return (
         <div>
             <div className="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
@@ -10,7 +45,7 @@ const Login = () => {
             <p className="mt-2 text-gray-500">Sign in below to access your account</p>
         </div>
         <div className="mt-5">
-            <form action="">
+            <form onSubmit={handleLogin} action="">
                 <div className="relative mt-6">
                     <input
                         type="email"
@@ -29,6 +64,7 @@ const Login = () => {
                 </div>
                 <div className="relative mt-6">
                     <input
+
                         type="password"
                         name="password"
                         id="password"
@@ -45,20 +81,17 @@ const Login = () => {
                 <div className="my-6">
                     <button
                         type="submit"
-                        className="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none"
+                        className="w-full rounded-md bg-gradient-to-r   from-[#1A120B] to-[#3C2A21]  px-3 py-4 text-white focus:bg-gray-600 focus:outline-none"
                     >
                         Sign in
                     </button>
                 </div>
                 <p className="text-center text-sm text-gray-500">
                     Don&#x27;t have an account yet?{" "}
-                    <a
-                        href="#!"
-                        className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
-                    >
-                        Sign up
-                    </a>
-                    .
+                  
+                       <Link to='/signup'> Sign up</Link>
+                
+                    
                 </p>
             </form>
         </div>

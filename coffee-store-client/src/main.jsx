@@ -15,6 +15,8 @@ import Login from './components/Login.jsx';
 import SignUp from './components/SignUp.jsx';
 import Home from './components/Home.jsx';
 import Contact from './components/Contact.jsx';
+import AuthProvider from './providers/AuthProvider.jsx';
+import Users from './components/Users.jsx';
 
 
 const router = createBrowserRouter([
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/coffee')
+        loader: () => fetch('https://coffee-store-server-one-rho.vercel.app/coffee')
       },
       {
         path: "addCoffee",
@@ -45,9 +47,14 @@ const router = createBrowserRouter([
         element: <Contact></Contact>,
       },
       {
+        path: "users",
+        element: <Users></Users>,
+        loader : () => fetch('https://coffee-store-server-one-rho.vercel.app/users')
+      },
+      {
         path: "updateCoffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
-        loader : ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`),
+        loader : ({params}) => fetch(`https://coffee-store-server-one-rho.vercel.app/coffee/${params.id}`),
       },
 
       {
@@ -63,7 +70,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+       <AuthProvider>
        <RouterProvider router={router} />
+       </AuthProvider>
 
   </StrictMode>,
 )
