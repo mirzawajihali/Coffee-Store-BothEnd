@@ -1,7 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link} from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
+import logo from '../assets/logo3-removebg-preview.png'
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext);
+    
+
     return (
         <div className="px-4 bg-gradient-to-r from-[#1A120B] to-[#3C2A21] text-white text-bold  max-w-screen sm:px-6">
     <div className="relative p-3 sm:mb-24">
@@ -11,8 +16,8 @@ const Navbar = () => {
                     <a href="#">
                         <span className="sr-only">Company Name</span>
                         <img
-                            className="w-auto h-8 sm:h-10"
-                            src="https://www.pngkey.com/png/detail/115-1152803_free-coffee-logo-coffee-logo-free.png"
+                            className="w-auto h-10 sm:h-10"
+                            src={logo}
                             loading="lazy"
                             width="202"
                             height="60"
@@ -47,21 +52,39 @@ const Navbar = () => {
             </div>
             <div className="hidden md:flex font-bold md:space-x-10 list-none">
                <Link to='/'>Home</Link>
-               <Link to='/addCoffee'>Add Coffee</Link>
+              {user && <div > <Link className='mr-8' to='/addCoffee'>Add Coffee</Link>
+                <Link to='/users'>Users</Link>
+                </div>}
                <Link to='/contact'>Contact Us</Link>
-               <Link to='/users'>Users</Link>
+               
             </div>
             <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                 <div className="inline-flex rounded-full  shadow">
+
+                
+                    {user && user?.email ?  <div className='flex gap-1 items-center '> <img  src={user.photoURL}
+                    className='w-8 h-8 rounded-full' alt="user" /> 
+                    <h1 className='font-bold'>{user.displayName}</h1> 
+                    </div> :   <p></p>}
+
+
+
+                {
+                        user && user?.email ? 
+                        
+                        <button onClick={logOut} className='btn btn-neutral'>Log out</button>
+
+                        : <div>  <button className='  className="inline-flex items-center mx-2 px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
+                        <Link to="login">Login</Link>
+                        </button>
+                        <button className='  className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
+                        <Link to="signup">SignUp</Link>
+                        </button></div> 
+                    } 
                   
                    
                    
-                   <button className='  className="inline-flex items-center mx-2 px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
-                   <Link to="login">Login</Link>
-                   </button>
-                   <button className='  className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50"'>
-                   <Link to="signup">SignUp</Link>
-                   </button>
+                 
                        
                    
                 </div>

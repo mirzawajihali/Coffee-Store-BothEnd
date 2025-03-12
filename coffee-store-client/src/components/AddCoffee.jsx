@@ -27,7 +27,7 @@ const AddCoffee = () => {
 
         console.log(newCoffee);
 
-        fetch('https://coffee-store-server-one-rho.vercel.app/coffee',
+        fetch('http://localhost:5000/coffee',
             {
                 method: 'POST',
                 headers: {

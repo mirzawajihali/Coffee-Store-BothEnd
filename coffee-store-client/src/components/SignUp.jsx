@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import photo2 from '../assets/photo2.jpg'
 import { AuthContext } from '../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
-        const {createUser} = useContext(AuthContext);
+        const {createUser, setUser} = useContext(AuthContext);
+        const [errorMessage , setErrorMessage] = useState(null);
+        const navigate = useNavigate();
         
         const handleSignUp = (event) => {
             event.preventDefault();
@@ -20,12 +22,14 @@ const SignUp = () => {
             .then(result => {
             
                
+              
                
                 const createdAt = result?.user?.metadata.creationTime;
                 const newUser = {email, name, photo, createdAt }
+                setUser(newUser);
 
                 // save new user data to database 
-                fetch("https://coffee-store-server-one-rho.vercel.app/users",{
+                fetch("http://localhost:5000/users",{
                     method : 'POST',
                     headers : {
                         'content-type' : 'application/json' 
@@ -48,9 +52,12 @@ const SignUp = () => {
                     }
                 })
                 form.reset();
+                navigate(location?.state ? location.state : '/' );
             })
             .catch(error => {
                 console.log(error);
+                console.log(error)
+                setErrorMessage(error.message)
             })
         }
 
@@ -144,6 +151,11 @@ const SignUp = () => {
                     .
                 </p>
             </form>
+            <p className='text-center font-bold text-red-500'>
+    {
+      errorMessage && errorMessage
+    }
+  </p>
       </div>
     
     </div>

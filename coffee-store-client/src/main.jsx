@@ -17,6 +17,8 @@ import Home from './components/Home.jsx';
 import Contact from './components/Contact.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import Users from './components/Users.jsx';
+import PrivateRouter from './router/PrivateROuter.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -28,11 +30,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('https://coffee-store-server-one-rho.vercel.app/coffee')
+        loader: () => fetch('http://localhost:5000/coffee')
       },
       {
         path: "addCoffee",
-        element: <AddCoffee></AddCoffee>,
+        element: <PrivateRouter><AddCoffee></AddCoffee></PrivateRouter>,
       },
       {
         path: "login",
@@ -48,13 +50,13 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <Users></Users>,
-        loader : () => fetch('https://coffee-store-server-one-rho.vercel.app/users')
+        element:<PrivateRouter> <Users></Users></PrivateRouter>,
+        loader : () => fetch('http://localhost:5000/users')
       },
       {
         path: "updateCoffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
-        loader : ({params}) => fetch(`https://coffee-store-server-one-rho.vercel.app/coffee/${params.id}`),
+        loader : ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`),
       },
 
       {

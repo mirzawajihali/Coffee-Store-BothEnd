@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 
 
 const Login = () => {
-    const {loginUser} = useContext(AuthContext);
+    const {loginUser, setUser} = useContext(AuthContext);
+    const [errorMessage, setErrorMessage]= useState(null);
+    const navigate = useNavigate();
+
     const handleLogin= (e) =>
-    {
+         {
             e.preventDefault();
             const form = e.target;
             const email = form.email.value
@@ -14,11 +17,13 @@ const Login = () => {
 
             loginUser(email, password)
             .then(result =>{
+                    const user = result.user;
+                    setUser(user)
                     console.log(result.user)
                     const lastSignInTime = result.user?.metadata?.lastSignInTime
                     const loginInfo ={email, lastSignInTime}
 
-                    fetch(`https://coffee-store-server-one-rho.vercel.app/users`, {
+                    fetch(`http://localhost:5000/users`, {
                         method : 'PATCH'  ,
                         headers :{
                             'content-type' : 'application/json'
@@ -29,11 +34,13 @@ const Login = () => {
                     .then(data => {
                         console.log(data)
                         form.reset();
+                        navigate(location?.state ? location.state : '/' );
                     })
                     
             })
             .catch(error =>{
                 console.log(error)
+                setErrorMessage(error.message)
             })
     }
     return (
@@ -86,14 +93,20 @@ const Login = () => {
                         Sign in
                     </button>
                 </div>
-                <p className="text-center text-sm text-gray-500">
+               
+            </form>
+            <p className="text-center text-sm text-gray-500">
                     Don&#x27;t have an account yet?{" "}
                   
                        <Link to='/signup'> Sign up</Link>
                 
                     
                 </p>
-            </form>
+                <p className='text-center font-bold text-red-500'>
+    {
+      errorMessage && errorMessage
+    }
+  </p>
         </div>
     </div>
 </div>
