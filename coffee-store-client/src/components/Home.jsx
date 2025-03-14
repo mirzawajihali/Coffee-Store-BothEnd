@@ -5,12 +5,17 @@ import DisplayCoffee from './displayCoffee';
 import ExtraSection from './ExtraSection';
 import logo from "../assets/logo3.jpg"
 
+
 const Home = () => {
     const coffee =useLoaderData();
+   
     return (
         <div>
             <Header></Header>
-            <DisplayCoffee coffee={coffee}></DisplayCoffee>
+           
+      <DisplayCoffee coffee={coffee}></DisplayCoffee> 
+
+            
             <ExtraSection></ExtraSection>
 
             <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">

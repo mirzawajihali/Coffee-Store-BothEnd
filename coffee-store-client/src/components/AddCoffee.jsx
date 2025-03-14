@@ -54,7 +54,8 @@ const AddCoffee = () => {
     return (
        <div>
         
-         <div className="bg-[#dfd9c5] border border-4 rounded-lg shadow relative m-10">
+         <div className="bg-gradient-to-r from-[#D7CCC8] to-[#BCAAA4] border border-4 rounded-lg shadow relative m-10">
+            
         <div className="flex items-start justify-between p-5 border-b rounded-t">
             <h3 className="text-xl font-semibold">
                 Add Coffee
@@ -100,7 +101,7 @@ const AddCoffee = () => {
                     </div>
                 </div>
                 <div className="py-6 border-t border-gray-200 rounded-b">
-           <input type="submit" value="Add Coffee" className="btn bg-[#6F4E37] text-white btn-block" />
+           <input type="submit" value="Add Coffee" className="btn bg-gradient-to-r from-[#1A120B] to-[#3C2A21] text-white btn-block" />
         </div>
             </form>
         </div>
