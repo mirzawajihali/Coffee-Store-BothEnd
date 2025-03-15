@@ -9,8 +9,12 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/",
+            "dest": "/index.js",
             "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
         }
-    ]
+    ],
+    "env": {
+        "DB_USER": "@db_user",
+        "DB_PASS": "@db_pass"
+    }
 }
