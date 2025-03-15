@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import Header from './Header';
 import DisplayCoffee from './displayCoffee';
 import ExtraSection from './ExtraSection';
+import FeatureSection from './FeatureSection';
 import logo from "../assets/logo3.jpg"
 
 
@@ -13,8 +14,9 @@ const Home = () => {
         <div>
             <Header></Header>
            
-      <DisplayCoffee coffee={coffee}></DisplayCoffee> 
-
+            <DisplayCoffee coffee={coffee}></DisplayCoffee> 
+            
+            <FeatureSection></FeatureSection>
             
             <ExtraSection></ExtraSection>
 

@@ -23,7 +23,7 @@ const Coffee = ({coffee, coffees, setCoffees}) => {
           }).then((result) => {
             if (result.isConfirmed) {
          
-            fetch(`http://localhost:5000/coffee/${_id}`, {
+            fetch(`https://coffee-store-server-one-rho.vercel.app/coffee/${_id}`, {
                 method : "DELETE"
             } )
             .then(res => res.json())
@@ -86,7 +86,7 @@ const {name, price, taste, photo} = coffee;
     <div className="relative text-white px-2 pb-4 mt-2">
    {user &&  <div className="flex justify-center items-center gap-2 ">
   <button className="btn rounded-xl shadow-2xl "><FaEye /></button>
-  <button className="btn rounded-xl shadow-2xl "><Link to={`updateCoffee/${coffees._id}`}><FaEdit /></Link></button>
+  <button className="btn rounded-xl shadow-2xl "><Link to={`updateCoffee/${coffee._id}`}><FaEdit /></Link></button>
   <button onClick={() => handleDelete(coffee._id) } className="btn rounded-xl shadow-2xl "><MdDelete /></button>
 </div>}
     </div>
