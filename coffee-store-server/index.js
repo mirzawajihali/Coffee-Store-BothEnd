@@ -8,7 +8,11 @@ const port = process.env.PORT || 5000;
 
 // middleware 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://coffee-store-client-six.vercel.app'],
+  origin: [
+    'http://localhost:5173', // For local development
+    'https://coffee-store-client-six.vercel.app', // Your Vercel domain
+    'https://coffee-store-7d628.web.app' // Your Firebase Hosting domain
+  ],
   credentials: true
 }));
 app.use(express.json());
